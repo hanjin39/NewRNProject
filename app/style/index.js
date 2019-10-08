@@ -26,6 +26,8 @@ const styles = StyleSheet.create({
     },
     navigationBar: {
         backgroundColor: constant.primaryColor,
+        elevation:1,
+        // borderBottomWidth: 0
     },
     titleTextStyle: {
         color: constant.titleTextColor,

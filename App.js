@@ -6,10 +6,15 @@ import Home from './app/components/pages/Home'
 import Center from './app/components/pages/Center'
 import TabIcon from './app/components/pages/tab/TabIcon'
 import * as Constant from './app/style/constant'
+import styles from './app/style'
+import Page1 from './app/components/pages/Page1'
+import Page2 from './app/components/pages/Page2'
 
 const App = () => (
     <Router>
-        <Scene key="root" backTitle='back'
+        <Scene key="root"
+               backTitle='返回'
+               navigationBarStyle={styles.navigationBar}
                titleStyle={{ color: Constant.subLightTextColor }}>
             <Tabs key="tabPage"
                   tabs
@@ -39,6 +44,8 @@ const App = () => (
                        icon={TabIcon}
                 />
             </Tabs>
+            <Scene key="page1" component={Page1} title="Page1" tabBarLabel="Page1" back/>
+            <Scene key="page2" component={Page2} title="Page2" tabBarLabel="Page2" back/>
         </Scene>
 
     </Router>

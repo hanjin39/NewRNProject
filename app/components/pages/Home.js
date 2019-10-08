@@ -28,6 +28,12 @@ const styles = StyleSheet.create({
 });
 
 export default class Home extends React.Component {
+
+  //进入当前页面
+  static onEnter = () => {
+    console.log('首页')
+  };
+
   render() {
     return (<View style={styles.container}>
       <Text>首页</Text>
