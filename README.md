@@ -12,3 +12,6 @@ cd ios
 ```
 pod install
 ```
+# Documentation
+
+`react-native-router-flux.md`  路由框架使用整理
