@@ -1,56 +1,59 @@
-import React from 'react';
-import { Platform, StyleSheet, Text, View } from "react-native";
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow
+ */
 
-import { Scene, Router, Stack, Tabs, Lightbox, Modal } from "react-native-router-flux";
+import React from 'react';
+import {
+    SafeAreaView,
+    StyleSheet,
+    ScrollView,
+    View,
+    Text,
+    StatusBar,
+} from 'react-native';
+
 import Home from './app/components/pages/Home'
+import {Router,Scene,Tabs,Stack,Lightbox,Modal} from 'react-native-router-flux'
 import Center from './app/components/pages/Center'
-import TabIcon from './app/components/pages/tab/TabIcon'
-import * as Constant from './app/style/constant'
-import styles from './app/style'
-import Page1 from './app/components/pages/Page1'
-import Page2 from './app/components/pages/Page2'
+import Login from './app/components/pages/Login'
+import Register from './app/components/pages/Register'
+import Change from './app/components/pages/Change'
+
+
 
 const App = () => (
     <Router>
-        <Scene key="root"
-               backTitle='返回'
-               navigationBarStyle={styles.navigationBar}
-               titleStyle={{ color: Constant.subLightTextColor }}>
-            <Tabs key="tabPage"
-                  tabs
-                  lazy
-                  hideNavBar
-                  labelStyle={{ fontSize: 16 }}
-                  tabBarStyle={{
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: Constant.tabBackgroundColor
-                  }}
-                  inactiveTintColor="blue"
-                  activeTintColor="red"
-                  showLabel={false}
-            >
-                <Scene key="home"
+        <Lightbox>
+            <Stack key='LoginPage'>
+                <Scene key='Login' component={Login} title='Login' hideNavBar/>
+                <Scene key='Register' component={Register} title='Register'/>
+            </Stack>
+            <Tabs key='Tab'
+                  navigationBarStyle={{backgroundColor:'#42464b'}}
+                  titleStyle={{color:'white',fontSize:18}}
+                  backTitle=' '
+                  backButtonImage={require('./app/components/icons/nav-back.png')}
+                  labelStyle={{fontSize:20}}
+                  activeTintColor='red'>
+
+                <Scene key='Home'
                        component={Home}
-                       title="首页"
-                       tabIconName={'tabHome'}
-                       icon={TabIcon}
+                       title='Home'
+                />
 
-                />
-                <Scene key="center"
-                       component={Center}
-                       title="个人中心"
-                       tabIconName={'tabMy'}
-                       icon={TabIcon}
-                />
+                <Stack key='Center' title='Center'>
+                    <Scene key='Personal'  component={Center}  title='Personal'/>
+                    <Scene key='Change' component={Change} title='Change' hideTabBar/>
+                </Stack>
             </Tabs>
-            <Scene key="page1" component={Page1} title="Page1" tabBarLabel="Page1" back/>
-            <Scene key="page2" component={Page2} title="Page2" tabBarLabel="Page2" back/>
-        </Scene>
 
+        </Lightbox>
     </Router>
 );
-
 
 
 export default App;

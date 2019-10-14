@@ -1,35 +1,30 @@
 import React, {PureComponent} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity, Image,Button} from 'react-native';
 import PropTypes from 'prop-types';
-import {Actions} from 'react-native-router-flux'
+import {Actions} from 'react-native-router-flux';
 
-
-
-class Home extends PureComponent {
+class Change extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
             valueCustom: '',
         };
     }
-    static onEnter() {
-
+    onEnter() {
+        console.log('data',this.props.data)
     }
 
-    static renderLeftButton = (props) => {
-        return (
-            <View style={{width:100,height:44,backgroundColor: 'red'}}/>
-        )
-    }
-
-    static renderRightButton = (props) => {
-        return (
-            <View style={{width:100,height:44,backgroundColor: 'red'}}/>
-        )
-    }
-        render() {
+    render() {
         return (
             <View style={styles.container} onPress={this.props.onClick}>
+                <Button title='Changing Personal Data' onPress={() => {
+                    let data = {
+                        name: 'lucy',
+                        email: '4444445552@163.com',
+                        sex: 'woman',
+                    };
+                    Actions.pop({refresh:{data},timeout: 1})
+                }}/>
 
             </View>
         );
@@ -49,10 +44,10 @@ const propTypes = {
     onClick: PropTypes.func,
 };
 
-Home.propTypes = propTypes;
+Change.propTypes = propTypes;
 
-Home.defaultProps = {
+Change.defaultProps = {
     onClick: undefined,
 };
 
-export default Home;
+export default Change;

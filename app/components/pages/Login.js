@@ -4,33 +4,19 @@ import PropTypes from 'prop-types';
 import {Actions} from 'react-native-router-flux'
 
 
-
-class Home extends PureComponent {
+class Login extends PureComponent {
     constructor(props) {
         super(props);
         this.state = {
             valueCustom: '',
         };
     }
-    static onEnter() {
 
-    }
-
-    static renderLeftButton = (props) => {
-        return (
-            <View style={{width:100,height:44,backgroundColor: 'red'}}/>
-        )
-    }
-
-    static renderRightButton = (props) => {
-        return (
-            <View style={{width:100,height:44,backgroundColor: 'red'}}/>
-        )
-    }
-        render() {
+    render() {
         return (
             <View style={styles.container} onPress={this.props.onClick}>
-
+                <Button title='Login' onPress={()=>Actions.reset('Tab')}/>
+                <Button title='Register' onPress={()=>Actions.Register()}/>
             </View>
         );
     }
@@ -49,10 +35,10 @@ const propTypes = {
     onClick: PropTypes.func,
 };
 
-Home.propTypes = propTypes;
+Login.propTypes = propTypes;
 
-Home.defaultProps = {
+Login.defaultProps = {
     onClick: undefined,
 };
 
-export default Home;
+export default Login;

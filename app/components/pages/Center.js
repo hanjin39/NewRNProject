@@ -1,55 +1,75 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import Button from 'react-native-button';
+import React, {PureComponent} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, Image, Button} from 'react-native';
+import PropTypes from 'prop-types';
 import {Actions} from 'react-native-router-flux';
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#F5FCFF',
-    },
-    welcome: {
-        fontSize: 20,
-        textAlign: 'center',
-        margin: 10,
-    },
-    instructions: {
-        textAlign: 'center',
-        color: '#333333',
-        marginBottom: 5,
-    },
-    test: {
-        backgroundColor: '#eee',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+class Center extends PureComponent {
+    constructor(props) {
+        super(props);
+        this.state = {
+            valueCustom: '',
+        };
+    }
 
-export default class Center extends React.Component {
+    onEnter() {
+        console.log('enter center');
 
-    //进入当前页面
-    static onEnter = () => {
-        console.log('进入个人中心');
+        this.refreshData();
+    }
+
+
+    refreshData = () => {
+        //拉接口取到用户信息，刷新组件
+        let data = {
+            name: 'juceee',
+            email: '12232342@163.com',
+            sex: 'men',
+        };
+        setTimeout(() => Actions.refresh({data}));
     };
 
 
     render() {
-        const {data} = this.props;
-
+        let data = this.props.data;
         return (
-            <View style={styles.container}>
-                <Text>个人中心</Text>
-                <Text>Data: {data}</Text>
-
-                <Button onPress={() => {
-                    Actions.refresh({data: 'helloworld'});
-                }}>刷新</Button>
-
-                <Button onPress={()=>{
-                    Actions.page1({data:'center传递:data=123'})
-                }}>跳转page1并传递数据</Button>
-            </View>);
+            <View style={styles.container} onPress={this.props.onClick}>
+                {data &&
+                <View style={styles.textView}>
+                    <Text style={styles.textfont}>name:{data.name}</Text>
+                    <Text style={styles.textfont}>email:{data.email}</Text>
+                    <Text style={styles.textfont}>sex:{data.sex}</Text>
+                </View>}
+                <Button title='Refresh' onPress={this.refreshData}/>
+                <Button title='Change Personal Data' onPress={() => Actions.Change({data})}/>
+                <Button title='Exit Login' onPress={() => Actions.reset('LoginPage')}/>
+            </View>
+        );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'white',
+        flex: 1,
+    },
+    textView: {
+        backgroundColor: 'gray',
+        padding: 20,
+    },
+    textfont: {
+        fontSize: 20,
+        color: 'white',
+    },
+});
+
+const propTypes = {
+    onClick: PropTypes.func,
+};
+
+Center.propTypes = propTypes;
+
+Center.defaultProps = {
+    onClick: undefined,
+};
+
+export default Center;
