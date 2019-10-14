@@ -14,4 +14,6 @@ pod install
 ```
 # Documentation
 
-`react-native-router-flux.md`  路由框架使用整理
+[页面切换数据交互](https://github.com/hanjin39/NewRNProject/blob/master/react-native-router-flux.md)  
+
+

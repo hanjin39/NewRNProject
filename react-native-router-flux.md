@@ -33,10 +33,10 @@ this.props.KEY_NAME
 
 ```
 // 不带参数的最简写法 
-onPress={Actions.proflis} 
+onPress={Actions.proflie} 
 
 // 带参数的最简写法，传递的参数必须是Object类型，每个参数建议使用键值对方式传递
-onPress={() => {Actions.proflie({key:value})}}  
+onPress={() => {Actions.proflie({data:value})}}  
 
 this.props.key // 接收参数
 ```
@@ -52,7 +52,7 @@ Actions.pop()
 * 返回上一页面，带参数
 
 ```
-Actions.pop({refresh:{key:value},timeout: 1})
+Actions.pop({refresh:{data:value},timeout: 1})
 ```
 
 * 返回指定页面
@@ -81,6 +81,8 @@ componentWillReceiveProps(nextProps) {
 
 ## onBack
 
+点击返回按钮调用
+
 ```
 componentDidMount() {
     setTimeout(() => {
@@ -107,6 +109,8 @@ componentDidMount() {
 
 
 ## onEnter
+
+每次进入页面调用
 
 ```
 componentWillReceiveProps(nextProps: Readonly<P>, nextContext: any): void {
